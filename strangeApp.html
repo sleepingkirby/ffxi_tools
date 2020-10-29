@@ -1,0 +1,52 @@
+<html>
+<head>
+<title> Strange Apparratus Calc</title>
+<script>
+var chars={'a':0, 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7, 'i':8, 'j':9, 'k':10, 'l':11, 'm':12, 'n':13, 'o':14, 'p':15, 'q':16, 'r':17, 's':18, 't':19, 'u':20, 'v':21, 'w':22, 'x':23, 'y':24, 'z':25 };
+var zones={'DANGRUF_WADI': '0',  'ORDELLES_CAVES': '3',  'OUTER_HORUTOTO': '5',  'THE_ELDIEME': '4',  'GUSGEN_MINES': '1',  'CRAWLERS_NEST': '2',  'MAZE_OF': '7',  'GARLAIGE_CITADEL': '6'};
+
+
+
+function calc(){
+var name=document.getElementById('name').value;
+
+if(name.length<3){
+document.getElementById('num').innerText="need a name with at least 3 characters.";
+return 1;
+}
+
+var zoneVal=document.getElementById('zones').value;
+var code=[0,0,0,0];
+code[0]= parseInt(chars[name[0]]) + parseInt(zoneVal);
+code[1]=parseInt(chars[name[1]]) + parseInt(zoneVal);
+code[2]=parseInt(chars[name[2]]) + parseInt(zoneVal);
+code[3]=parseInt(code[0]) + parseInt(code[1]) + parseInt(code[2]) + parseInt(zoneVal);
+var txt= ("0"+code[0]).slice(-2) + ("0"+code[1]).slice(-2) + ("0"+code[2]).slice(-2) + ("0"+code[3]).slice(-2);
+document.getElementById('num').innerText=txt;
+return 0;
+}
+
+</script>
+
+</head>
+<body>
+<input id="name" type="input" placeholder="character name here..."> </input> 
+
+<select id="zones">
+
+</select>
+<input type="submit" value="calculate!" onClick="calc()">
+
+<div id="num" style="margin: 10px 10px 10px 10px;"></div>
+<script>
+
+var selectEl=document.getElementById('zones');
+for( key in zones){
+selectEl.innerHTML=selectEl.innerHTML+"\n<option value=\""+zones[key]+"\">"+key+"</option>";
+}
+
+</script>
+
+
+</body>
+</html>
